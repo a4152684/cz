@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>create_file</id>
+    <version>1.0.0</version>
+    <authors>create_file</authors>
+    <owners>create_file</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Git\Csharp-SGG\create_file\create_file\bin\Debug\netcoreapp3.1\create_file.runtimeconfig.json" target="lib\netcoreapp3.1\create_file.runtimeconfig.json" />
+    <file src="E:\Git\Csharp-SGG\create_file\create_file\bin\Debug\netcoreapp3.1\create_file.dll" target="lib\netcoreapp3.1\create_file.dll" />
+  </files>
+</package>

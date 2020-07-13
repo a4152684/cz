@@ -1,0 +1,485 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>echarts统计图表</title>
+    <meta charset="utf-8" />
+    <link href="../../css/ol.css" rel="stylesheet" />
+    <script src="../../libs/ol5/ol.js"></script>
+    <script src="../../libs/jquery-1.11.2.min.js"></script>
+    <script src="../../libs/echarts.common.min.js"></script>
+    <style>
+        #mapCon {
+            position: relative;
+            background: #f8f4f0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #menu {
+            padding: 10px;
+            border-radius: 3px;
+            overflow: hidden;
+            width: 99%;
+            height: auto;
+            box-shadow: 0 0 2px 1px #949292;
+            text-align: center;
+            z-index: 2001;
+            border-color: #66ccff;
+            border-bottom: 1px solid #949292;
+            margin-bottom: 2px;
+        }
+
+            #menu select {
+                padding: 2px;
+            }
+
+        .axis path,
+        .axis line {
+            fill: rgb(128, 128, 128);
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">        
+		<label>2020年</label>
+	<select id='select_month'>
+		<option value="01" >1</option>
+		<option value="02" >2</option>
+		<option value="03" >3</option>
+		<option value="04" >4</option>
+		<option value="05" selected >5</option>
+		<option value="06" >6</option>
+		</select>
+	<label>月</label>
+	<select id='select_day'>
+		<option value="01" selected>1</option>
+		<option value="02" >2</option>
+		<option value="03" >3</option>
+		<option value="04" >4</option>
+		<option value="05" >5</option>
+		<option value="06" >6</option>
+		<option value="07" >7</option>
+		<option value="08" >8</option>
+		<option value="09" >9</option>
+		<option value="10" >10</option>
+		<option value="11" >11</option>
+		<option value="12" >12</option>
+		<option value="13" >13</option>
+		<option value="14" >14</option>
+		<option value="15" >15</option>
+		<option value="16" >16</option>
+		<option value="17" >17</option>
+		<option value="18" >18</option>
+		<option value="19" >19</option>
+		<option value="20" >20</option>
+		<option value="21" >21</option>
+		<option value="22" >22</option>
+		<option value="23" >23</option>
+		<option value="24" >24</option>
+		<option value="25" >25</option>
+		<option value="26" >26</option>
+		<option value="27" >27</option>
+		<option value="28" >28</option>
+		<option value="29" >29</option>
+		<option value="30" >30</option>
+		<option value="31" >31</option>
+		</select>
+	<label>日</label>
+		&nbsp;&nbsp;&nbsp;
+		<label>省份：</label>
+		<select id='select_name'>
+		<option value='上海' >上海</option>
+		<option value='云南' >云南</option>
+		<option value='内蒙古' >内蒙古</option>
+		<option value='北京' >北京</option>
+		<option value='台湾' >台湾</option>
+		<option value='吉林' >吉林</option>
+		<option value='四川' >四川</option>
+		<option value='天津' >天津</option>
+		<option value='宁夏' >宁夏</option>
+		<option value='安徽' >安徽</option>
+		<option value='山东' >山东</option>
+		<option value='山西' >山西</option>
+		<option value='广东' >广东</option>
+		<option value='广西' >广西</option>
+		<option value='新疆' >新疆</option>
+		<option value='江苏' >江苏</option>
+		<option value='江西' >江西</option>
+		<option value='河北' >河北</option>
+		<option value='河南' >河南</option>
+		<option value='浙江' >浙江</option>
+		<option value='海南' >海南</option>
+		<option value='湖北' selected>湖北</option>
+		<option value='湖南' >湖南</option>
+		<option value='澳门' >澳门</option>
+		<option value='甘肃' >甘肃</option>
+		<option value='福建' >福建</option>
+		<option value='西藏' >西藏</option>
+		<option value='贵州' >贵州</option>
+		<option value='辽宁' >辽宁</option>
+		<option value='重庆' >重庆</option>
+		<option value='陕西' >陕西</option>
+		<option value='青海' >青海</option>
+		<option value='香港' >香港</option>
+		<option value='黑龙江' >黑龙江</option>
+		</select>
+		
+		<br>
+		  <label>
+		    <input type="radio" name="RadioGroup1" value="累积确诊" id="RadioGroup1_0" checked>
+		    累积确诊</label>
+		  <label>
+		    <input type="radio" name="RadioGroup1" value="治愈" id="RadioGroup1_1">
+		    治愈</label>
+		  <label>
+		    <input type="radio" name="RadioGroup1" value="死亡" id="RadioGroup1_2">
+		    死亡</label>
+		  <label>
+		    <input type="radio" name="RadioGroup1" value="新增确诊" id="RadioGroup1_3">
+		    新增确诊</label>
+	  <br>
+		
+	  <label>统计图类型：&nbsp;</label>
+        <select id="type">
+            <option value="Column2D">2D柱状图</option>
+            <option value="Line">折线图</option>
+            <option value="Pie2D">2D饼图</option>
+        </select>
+        <button id="showCharts" class="btn" title="">加载统计图</button>	
+    </div>
+	
+    <div id="mapCon"> </div>
+    <script>
+        //实例化Map对象加载地图
+        var geojson_source=new ol.source.Vector({
+					projection: 'EPSG:4326',
+					url: "china.geojson", //GeoJSON的文件路径
+					format: new ol.format.GeoJSON()
+					});
+        var map = new ol.Map({
+            //地图容器div的ID
+            target: 'mapCon',
+            //地图容器中加载的图层
+            layers: [
+             	new ol.layer.Tile({
+					source: new ol.source.OSM(),
+					zIndex: 10
+				}),
+							
+				new ol.layer.Vector({
+				title: '中国地图',
+				source: geojson_source
+				})
+								
+            ],
+            //地图视图设置
+            view: new ol.View({
+                //地图初始中心点
+                center: ol.proj.fromLonLat([114, 32]),
+                //地图初始显示级别
+                zoom: 5
+            })
+        });
+        //绘制热区的样式
+        var flashStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: 'rgba(0, 148, 255,0.2)'
+            }),
+            stroke: new ol.style.Stroke({
+                color: '#cc3300',
+                width: 3
+            }),
+            image: new ol.style.Circle({
+                radius: 7,
+                fill: new ol.style.Fill({
+                    color: '#cc3300'
+                })
+            })
+        });
+
+        //矢量数据源
+        var vectSource = new ol.source.Vector({});
+        //矢量图层
+        var vectLayer = new ol.layer.Vector({
+            source: vectSource,
+            style: flashStyle,
+            opacity: 0.5
+        });
+        map.addLayer(vectLayer); //将矢量图层加载到地图容器中
+
+        /**
+        * 【加载统计图】功能按钮处理函数
+        */
+        document.getElementById('showCharts').onclick = function () {
+            var overLayers = map.getOverlays(); //获取map中所有Overlays图层
+            overLayers.clear(); //移除所有Overlays图层
+            selectRegData(); //通过后台查询矢量要素显示并加载统计图
+        };
+        /**
+        * 通过后台查询矢量要素
+        */
+        function selectRegData() {
+			
+            var opType = "select";  //查询数据
+			var tableName = "疫情数据";  //数据表名称
+			var date="2020-";
+
+			var month_select=document.getElementById("select_month");
+			var month_index=month_select.selectedIndex;
+			var month=month_select.options[month_index].value;
+
+			var day_select=document.getElementById("select_day");
+			var day_index=day_select.selectedIndex;
+			var day=day_select.options[day_index].value;
+
+			date=date+month+"-"+day;
+			
+			var name_select=document.getElementById("select_name");
+			var name_index=name_select.selectedIndex;
+			var name=name_select.options[name_index].value;
+
+            $.ajax({
+                url: 'ReadData2.ashx', //请求地址
+                type: 'POST',  //请求方式为post
+                data: { 'type': opType, 'table': tableName,'date':date,'name':name }, //传入参数
+                dataType: 'json', //返回数据格式
+                //请求成功完成后要执行的方法
+                success: showRegCallBack,
+                error: function (err) {
+                    alert("执行失败");
+                }
+            });
+			
+        }
+		function getGeom(name)
+		{
+			var geom;
+			fe=geojson_source.getFeatures();
+			for(var i=0;i<fe.length;i++)
+			{
+				if(fe[i].get('name')==name)
+				{
+					geom=fe[i].get('geometry');  
+					break;
+				}
+			}
+			return geom;
+		}
+        /**
+        * 查询请求回调函数
+        * @param {json} data 查询返回的数据
+        */
+		function getType()//获取单选按钮所选
+		{
+			var x=document.getElementsByName("RadioGroup1");
+			var i;
+			for(i=0;i<x.length;i++)
+				{
+					if(x[i].checked)
+						{
+							break;
+						}
+				}
+			switch(i){
+					case 0: return "累积确诊"; break;
+					case 1: return "治愈"; break;
+					case 2: return "死亡"; break;
+					case 3: return "新增确诊"; break;	
+				}
+		}
+		
+        function showRegCallBack(data) {
+			var new_item=new Array(3);
+			var new_date=new Array(3);
+			var center;
+			var Name;
+			var Type_Name=getType();//获取类型
+			
+            vectSource.clear(); //清空矢量图层数据源
+            var resultData = data; //查询结果json数组
+            $.each(resultData, function (i, item) {
+				Name=item.省份;
+                //解析结果集中的几何字符串，并转换为多边形的几何数组                
+                //创建一个新的要素，并添加到数据源中
+                var feature = new ol.Feature({
+                    geometry: getGeom(item.省份),
+                    name: item.省份
+                });
+				
+				switch(Type_Name){
+					case "累积确诊": new_item[i]=item.累积确诊;break;
+					case "治愈": new_item[i]=item.治愈;break;
+					case "死亡": new_item[i]=item.死亡;break;
+					case "新增确诊": new_item[i]=item.新增确诊;break;
+				}
+				new_date[i]=item.时间;
+				
+                vectSource.addFeature(feature);
+                //得到feature的外包矩形中心点
+                var fGeometry = feature.getGeometry();
+                var fExtent = fGeometry.getExtent();
+                var centerX = fExtent[0] + (fExtent[2] - fExtent[0]) / 2;
+                var centerY = fExtent[1] + (fExtent[3] - fExtent[1]) / 2;
+                center = [centerX, centerY]; //外包矩形中心点
+                //为每个区域要素加载统计图               
+            });
+			addCharts(new_item, center,Name,new_date);
+        }		
+        var mapContainer = document.getElementById('mapCon'); //地图容器对象
+        var typeSelect = document.getElementById('type'); //统计图类型对象
+        /**
+        * 根据数据库中的数据加载统计图
+        * @param {json} itemData 查询返回的每条记录数据
+        * @param {ol.coordinate} coordinate 要素的几何外包矩形中心点
+        */
+        function addCharts(itemData, coordinate,Name,new_date) {
+            //新增div元素，用来承载统计图
+            var elementDiv = document.createElement('div');           
+            elementDiv.className = "linechart";
+            elementDiv.style.width = '500px';
+            elementDiv.style.height = '300px';
+
+            mapContainer.appendChild(elementDiv); // 为mapContainer添加div子节点
+
+            //创建一个Overlay控件
+            var newOverLayer = new ol.Overlay({
+                element: elementDiv,
+                autoPan: true,
+                positioning: 'bottom-center'
+            });
+            newOverLayer.setPosition(coordinate);
+            map.addOverlay(newOverLayer);
+            //统计图类型
+            var chartType = typeSelect.value;
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = echarts.init(elementDiv);
+            // 根据不同图表类型创建相应图表
+            myChart.setOption(initChartOption(itemData, chartType,Name,new_date));
+
+        }
+
+		
+        function initChartOption(itemData, chartType,Name,new_date) {
+            var option = {};
+            switch (chartType) {
+                case "Column2D":
+                    option = {
+                        //设置标题
+                        title: {
+                            text: Name+"近三天"+getType()+"人数",
+                            x: 'left',
+                            y: 'bottom'
+                        },
+                        //设置提示
+                        tooltip: {
+                            show: true
+                        },
+                        backgroundColor: 'rgba(128, 128, 128,0.5)',
+                        //设置图例
+                        legend: {
+                            data: ["人数(人)"]
+                        },
+                        //X轴信息
+                        xAxis: [{
+                            type: 'category',//默认为类目
+                            data: [new_date[2], new_date[1], new_date[0]]
+                        }],
+                        //Y轴信息
+                        yAxis: [
+                            {
+                                type: 'value'//默认为值类型
+                            }
+                        ],
+                        //显示的值
+                        series: [
+                            {
+                                "name": "人数(人)",//图表类型
+                                "type": "bar",//图表类型
+                                "data": [+itemData[2], +itemData[1], +itemData[0]]//图表数据
+                            }
+                        ]
+
+                    };
+                    break;
+                case "Line":
+                    option = {
+                        //设置标题
+                        title: {
+                            text: Name+"近三天"+getType()+"人数",
+                            x: 'left',
+                            y: 'bottom'
+                        },
+                        tooltip: {
+                            show: true
+                        },
+                        backgroundColor: 'rgba(128, 128, 128,0.5)',
+                        legend: {
+                            data: ["人数(人)"]
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: [new_date[2], new_date[1], new_date[0]]
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            "name": "人数(人)",
+                            "data": [+itemData[2], +itemData[1], +itemData[0]],
+                            "type": 'line'
+                        }]
+                    };
+                    break;
+                case "Pie2D":
+                    option = {
+                        title: {
+                            text: Name+"近三天"+getType()+"人数",
+                            x: 'right',
+                            y: 'top'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: [new_date[2], new_date[1], new_date[0]]
+                        },
+                        series: [
+                            {
+                                name: '人数',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: [
+                                    { value: +itemData[2], name: new_date[2] },
+                                    { value: +itemData[1], name: new_date[1] },
+                                    { value: +itemData[0], name: new_date[0] }
+                                ],
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    break;
+                default:
+                    break;
+            }
+            return option;
+        }
+    </script>
+</body>
+</html>

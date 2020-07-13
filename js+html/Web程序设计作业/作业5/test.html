@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>第五次作业</title>
+	<script src="test.js" type="text/javascript">
+    </script>
+</head>
+
+<body>
+	<script type="text/javascript">
+		var n=prompt("请输入一个正整数以判断其是否为素数");
+		var flag=IsPrime(n);
+		if(flag) alert(n.toString()+"是素数");
+		else alert(n.toString()+"不是素数");
+		
+		var count=0;
+		var str="";
+		for(var i=101;i<201;i++)
+			{
+				if(IsPrime(i)) 
+					{
+						count++;
+						str=str+i.toString()+" ";
+					};
+			};
+		alert("101-200之间共有"+count.toString()+"个素数，分别是:"+str);
+		
+		var m=prompt("请输入一个正整数以查看斐波拉契数列前面的项");
+		var str="";
+		for(var i=1;i<=m;i++)
+			{
+				str=str+F(i).toString()+" ";
+			};
+		alert(str);
+	</script>
+</body>
+</html>

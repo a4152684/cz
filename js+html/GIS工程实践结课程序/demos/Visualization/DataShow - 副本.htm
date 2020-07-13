@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>热区功能示例</title>
+    <meta charset="utf-8" />
+	<meta name="renderer" content="webkit" />
+    <link href="../../css/ol.css" rel="stylesheet" />
+    <script src="../../libs/ol5/ol.js"></script>
+</head>
+<body>
+	<div id='control' align="center">
+	<label>2020年</label>
+	<select id='select_month'>
+		<option value="1" >1</option>
+		<option value="2" >2</option>
+		<option value="3" >3</option>
+		<option value="4" >4</option>
+		<option value="5" selected >5</option>
+		<option value="6" >6</option>
+		</select>
+	<label>月</label>
+	<select id='select_day'>
+		<option value="1" selected>1</option>
+		<option value="2" >2</option>
+		<option value="3" >3</option>
+		<option value="4" >4</option>
+		<option value="5" >5</option>
+		<option value="6" >6</option>
+		<option value="7" >7</option>
+		<option value="8" >8</option>
+		<option value="9" >9</option>
+		<option value="10" >10</option>
+		<option value="11" >11</option>
+		<option value="12" >12</option>
+		<option value="13" >13</option>
+		<option value="14" >14</option>
+		<option value="15" >15</option>
+		<option value="16" >16</option>
+		<option value="17" >17</option>
+		<option value="18" >18</option>
+		<option value="19" >19</option>
+		<option value="20" >20</option>
+		<option value="21" >21</option>
+		<option value="22" >22</option>
+		<option value="23" >23</option>
+		<option value="24" >24</option>
+		<option value="25" >25</option>
+		<option value="26" >26</option>
+		<option value="27" >27</option>
+		<option value="28" >28</option>
+		<option value="29" >29</option>
+		<option value="30" >30</option>
+		<option value="31" >31</option>
+		</select>
+	<label>日</label>
+	<input type="button" value="查询">
+	
+	</div>
+	
+	<div id="mapCon">
+       <!-- Popup -->
+       <div id="popup" class="ol-popup"></div>
+    </div>
+ <script>
+//实例化Map对象加载地图
+        var map = new ol.Map({
+            //地图容器div的ID
+            target: 'mapCon',
+            //地图容器中加载的图层
+            layers: [
+             	new ol.layer.Tile({
+					source: new ol.source.OSM()
+				}),
+
+				new ol.layer.Vector({
+				title: '中国地图',
+				source: new ol.source.Vector({
+					projection: 'EPSG:4326',
+					url: "china.geojson", //GeoJSON的文件路径
+					format: new ol.format.GeoJSON()
+					})
+				})
+								
+            ],
+            //地图视图设置
+            view: new ol.View({
+                //地图初始中心点
+                center: ol.proj.fromLonLat([114, 32]),
+                //地图初始显示级别
+                zoom: 5
+            })
+        });
+    </script>
+</body>
+</html>

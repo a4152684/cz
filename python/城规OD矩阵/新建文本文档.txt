@@ -1,0 +1,46 @@
+clear
+clc
+
+OD=[5,7,4;
+    7,10,6;
+    4,5,15]
+summ=sum(sum(OD))
+
+Oi=sum(OD,2)%求行和
+Dj=sum(OD)%求列和
+
+Y=[40;
+   90;
+   36;]
+
+
+fs=Y./Oi
+OD=OD.*fs
+Dj=sum(OD)%求列和
+xs=Y'./Dj
+k=0;
+
+for i=1:10
+ OD=OD.*xs
+ Oi=sum(OD,2)%求行和
+ fs=Y./Oi
+ %计算差值
+ cha=abs(xs-fs')
+ m=max(cha)
+ k=k+1;
+ if m<0.01
+  break
+ end
+
+ OD=OD.*fs
+ Dj=sum(OD)%求列和
+ xs=Y'./Dj
+ %计算差值
+ cha=abs(xs-fs')
+ m=max(cha)
+ k=k+1;
+ if m<0.01
+  break
+ end
+end
+

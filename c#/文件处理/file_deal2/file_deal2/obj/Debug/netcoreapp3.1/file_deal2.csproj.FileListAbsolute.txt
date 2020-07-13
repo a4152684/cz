@@ -1,0 +1,16 @@
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.exe
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.deps.json
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.runtimeconfig.json
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.runtimeconfig.dev.json
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.dll
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\file_deal2.pdb
+E:\Git\Csharp-SGG\file_deal2\file_deal2\bin\Debug\netcoreapp3.1\Interop.VBIDE.dll
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.csprojAssemblyReference.cache
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\Interop.VBIDE.dll
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.csproj.ResolveComReference.cache
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.csproj.CoreCompileInputs.cache
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.AssemblyInfoInputs.cache
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.AssemblyInfo.cs
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.dll
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.pdb
+E:\Git\Csharp-SGG\file_deal2\file_deal2\obj\Debug\netcoreapp3.1\file_deal2.genruntimeconfig.cache

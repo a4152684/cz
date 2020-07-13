@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+title{font-family: "隶书";
+font-size: 24px;
+color: #FF0000;}
+
+tb{background-color: #EEDED8;}
+
+body{
+    font-family: "楷体";
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #DFC0BB;
+    text-align: center;
+}
+
+copy{
+    font-family: "宋体";
+    font-size: 12px;
+    line-height: 25px;
+    color: #333333;
+    background-color: #04A292;
+    text-align: center;
+}
+
+img01{
+    border-width: 4px;
+    border-style: outset;
+    border-color: #846761;
+	width: 270px;
+	height: 180px;
+	float: left;
+}
+lead {font-family: "宋体";
+	font-size: 14px;
+	line-height: 25px;
+	color: #FFFFFF;
+	background-color: #03756B;
+	text-align: center;
+	height: 25px;
+	width: 109px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-left-width: 0;
+	border-top-width: 0;
+	border-bottom-width: 0;
+	border-right-width: 1;
+	border-right-color: #FFFFFF;
+}
